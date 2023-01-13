@@ -1,7 +1,15 @@
 package human.resource.mgmt.external;
 
-@FeignClient(name = "schedule", url = "${api.url.schedule}")
+import java.util.Date;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@FeignClient(
+    name = "schedule",
+    url = "${api.url.schedule}",
+    fallback = CalendarServiceImpl.class
+)
 public interface CalendarService {
-    @GetMapping(path = "/calendars/find-by-userid")
-    public Calendar findByUserid(FindByUserIdQuery query);
+    @GetMapping(path = "/calendars/search-calendar")
+    public Calendar searchCalendar(SearchCalendarQuery query);
 }

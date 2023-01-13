@@ -1,5 +1,12 @@
 server:
   port: 8080
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution.isolation.thread.timeoutInMilliseconds: 500
 spring:
   application:
     name: vacation
@@ -12,11 +19,31 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+  kafka:
+    producer:
+      retries: 5
+      acks: all
+      properties:
+        enable:
+          idempotence: true   # Set Producer exactly once Trx
+    consumer:
+      properties:
+        spring.json.trusted.packages: "*"
+        isolation.level: read_committed         
   cloud:
     stream:
       kafka:
         binder:
           brokers: localhost:9092
+          transaction:
+            transactionIdPrefix: tx-${random.uuid}   
+        bindings:
+          event-in:
+            consumer:
+              autoCommitOffset: false    # Disable Offset auto commit
+              enableDlq: true
+              dlqName: dlq-human.resource.mgmt
+              dlqPartitions: 1         
         streams:
           binder:
             configuration:
@@ -41,6 +68,7 @@ logging:
 
 api:
   url:
+    vacation: localhost:8081
     schedule: localhost:8082
 
 
@@ -51,11 +79,31 @@ server:
 
 spring:
   profiles: docker
+  kafka:
+    producer:
+      retries: 5
+      acks: all
+      properties:
+        enable:
+          idempotence: true   # Set Producer exactly once Trx
+    consumer:
+      properties:
+        spring.json.trusted.packages: "*"
+        isolation.level: read_committed    
   cloud:
     stream:
       kafka:
         binder:
           brokers: my-kafka:9092
+          transaction:
+            transactionIdPrefix: tx-${random.uuid}   
+        bindings:
+          event-in:
+            consumer:
+              autoCommitOffset: false    # Disable Offset auto commit
+              enableDlq: true
+              dlqName: dlq-human.resource.mgmt
+              dlqPartitions: 1              
         streams:
           binder:
             configuration:
@@ -75,6 +123,7 @@ spring:
 
 api:
   url:
+    vacation: localhost:8080
     schedule: localhost:8080
 
 

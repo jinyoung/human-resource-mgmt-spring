@@ -32,10 +32,10 @@ public class Vacation {
     public void onPostPersist() {
         VacationRegistered vacationRegistered = new VacationRegistered(this);
         vacationRegistered.publishAfterCommit();
-        // Get request from SearchCalendar
-        //human.resource.mgmt.external.SearchCalendar searchCalendar =
-        //    Application.applicationContext.getBean(human.resource.mgmt.external.SearchCalendarService.class)
-        //    .getSearchCalendar(/** mapping value needed */);
+        // Get request from Vacation
+        //human.resource.mgmt.external.Vacation vacation =
+        //    Application.applicationContext.getBean(human.resource.mgmt.external.VacationService.class)
+        //    .getVacation(/** mapping value needed */);
 
     }
 

@@ -4,7 +4,8 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class SearchCalendar {
+public class Calendar {
 
-    private Long id;
+    private String userId;
+    private Object events;
 }

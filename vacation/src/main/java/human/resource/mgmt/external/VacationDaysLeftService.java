@@ -7,8 +7,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "schedule", url = "${api.url.schedule}")
-public interface SearchCalendarService {
-    @RequestMapping(method = RequestMethod.GET, path = "/searchCalendars/{id}")
-    public SearchCalendar getSearchCalendar(@PathVariable("id") Long id);
+@FeignClient(name = "vacation", url = "${api.url.vacation}")
+public interface VacationDaysLeftService {
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        path = "/vacationDaysLefts/{id}/use"
+    )
+    public void use(
+        @PathVariable("id") String userId,
+        @RequestBody UseCommand useCommand
+    );
 }

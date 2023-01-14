@@ -25,6 +25,7 @@ public class VacationController {
     )
     public Vacation cancel(
         @PathVariable(value = "id") String id,
+        @RequestBody CancelCommand cancelCommand,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
@@ -33,7 +34,7 @@ public class VacationController {
 
         optionalVacation.orElseThrow(() -> new Exception("No Entity Found"));
         Vacation vacation = optionalVacation.get();
-        vacation.cancel();
+        vacation.cancel(cancelCommand);
 
         vacationRepository.save(vacation);
         return vacation;
@@ -68,6 +69,7 @@ public class VacationController {
     )
     public Vacation confirmUsed(
         @PathVariable(value = "id") String id,
+        @RequestBody ConfirmUsedCommand confirmUsedCommand,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
@@ -76,7 +78,7 @@ public class VacationController {
 
         optionalVacation.orElseThrow(() -> new Exception("No Entity Found"));
         Vacation vacation = optionalVacation.get();
-        vacation.confirmUsed();
+        vacation.confirmUsed(confirmUsedCommand);
 
         vacationRepository.save(vacation);
         return vacation;
@@ -89,6 +91,7 @@ public class VacationController {
     )
     public Vacation update(
         @PathVariable(value = "id") String id,
+        @RequestBody UpdateCommand updateCommand,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
@@ -97,7 +100,7 @@ public class VacationController {
 
         optionalVacation.orElseThrow(() -> new Exception("No Entity Found"));
         Vacation vacation = optionalVacation.get();
-        vacation.update();
+        vacation.update(updateCommand);
 
         vacationRepository.save(vacation);
         return vacation;

@@ -25,6 +25,7 @@ public class EmployeeController {
     )
     public Employee resign(
         @PathVariable(value = "id") String id,
+        @RequestBody ResignCommand resignCommand,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
@@ -33,7 +34,7 @@ public class EmployeeController {
 
         optionalEmployee.orElseThrow(() -> new Exception("No Entity Found"));
         Employee employee = optionalEmployee.get();
-        employee.resign();
+        employee.resign(resignCommand);
 
         employeeRepository.save(employee);
         return employee;

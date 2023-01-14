@@ -47,6 +47,7 @@ public class CalendarController {
     )
     public Calendar cancelCalendar(
         @PathVariable(value = "id") String id,
+        @RequestBody CancelCalendarCommand cancelCalendarCommand,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
@@ -55,7 +56,7 @@ public class CalendarController {
 
         optionalCalendar.orElseThrow(() -> new Exception("No Entity Found"));
         Calendar calendar = optionalCalendar.get();
-        calendar.cancelCalendar();
+        calendar.cancelCalendar(cancelCalendarCommand);
 
         calendarRepository.save(calendar);
         return calendar;

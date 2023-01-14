@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalendarServiceImpl implements CalendarService {
 
-    public Calendar findByUserid(FindByUserIdQuery query) {
+    public Calendar searchCalendar(SearchCalendarQuery query) {
         Calendar calendar = new Calendar();
         return calendar;
     }

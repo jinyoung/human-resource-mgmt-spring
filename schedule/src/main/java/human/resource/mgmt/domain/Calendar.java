@@ -37,7 +37,7 @@ public class Calendar {
         scheduleAdded.publishAfterCommit();
     }
 
-    public void cancelCalendar() {
+    public void cancelCalendar(CancelCalendarCommand cancelCalendarCommand) {
         ScheduleCanceled scheduleCanceled = new ScheduleCanceled(this);
         scheduleCanceled.publishAfterCommit();
     }

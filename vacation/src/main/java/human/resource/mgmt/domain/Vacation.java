@@ -46,7 +46,7 @@ public class Vacation {
         return vacationRepository;
     }
 
-    public void cancel() {
+    public void cancel(CancelCommand cancelCommand) {
         VacationCancelled vacationCancelled = new VacationCancelled(this);
         vacationCancelled.publishAfterCommit();
     }
@@ -56,12 +56,12 @@ public class Vacation {
         vacationApproved.publishAfterCommit();
     }
 
-    public void confirmUsed() {
+    public void confirmUsed(ConfirmUsedCommand confirmUsedCommand) {
         VacationUsed vacationUsed = new VacationUsed(this);
         vacationUsed.publishAfterCommit();
     }
 
-    public void update() {
+    public void update(UpdateCommand updateCommand) {
         VacationRejected vacationRejected = new VacationRejected(this);
         vacationRejected.publishAfterCommit();
     }

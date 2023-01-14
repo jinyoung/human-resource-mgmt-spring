@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(name = "schedule", url = "${api.url.schedule}")
 public interface CalendarService {
-    @RequestMapping(method = RequestMethod.PUT, path = "/calendars/{id}/cancel")
-    public void cancelCalendar(@PathVariable("id") String userId);
+    @RequestMapping(method = RequestMethod.PUT, path = "/calendars/{id}/add")
+    public void addCalendar(
+        @PathVariable("id") String userId,
+        @RequestBody AddCalendarCommand addCalendarCommand
+    );
 }

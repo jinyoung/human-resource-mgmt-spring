@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import human.resource.mgmt.config.kafka.KafkaProcessor;
 import human.resource.mgmt.domain.*;
 import javax.naming.NameParser;
-import javax.naming.NameParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.kafka.support.Acknowledgment;
@@ -56,7 +55,13 @@ public class PolicyHandler {
             "\n\n##### listener Use : " + vacationRegistered + "\n\n"
         );
 
-        // Sample Logic //
+        UseCommand UseCommand = new UseCommand();
+
+        vacationDaysLeftRepository
+            .findById(event.id)
+            .ifPresent(aggregate -> {
+                aggregate.use(UseCommand);
+            });
 
         // Manual Offset Commit //
         acknowledgment.acknowledge();
@@ -76,8 +81,6 @@ public class PolicyHandler {
             "\n\n##### listener Add : " + vacationCancelled + "\n\n"
         );
 
-        // Sample Logic //
-
         // Manual Offset Commit //
         acknowledgment.acknowledge();
     }
@@ -96,14 +99,12 @@ public class PolicyHandler {
             "\n\n##### listener Add : " + vacationRejected + "\n\n"
         );
 
-        // Sample Logic //
-
         // Manual Offset Commit //
         acknowledgment.acknowledge();
     }
 
     @Autowired
-    human.resource.mgmt.external.FindByUserIdService findByUserIdService;
+    human.resource.mgmt.external.CalendarService calendarService;
 
     @StreamListener(
         value = KafkaProcessor.INPUT,
@@ -118,12 +119,6 @@ public class PolicyHandler {
         System.out.println(
             "\n\n##### listener RegisterUser : " + employeeJoined + "\n\n"
         );
-
-        // REST Request Sample
-
-        // findByUserIdService.getFindByUserId(/** mapping value needed */);
-
-        // Sample Logic //
 
         // Manual Offset Commit //
         acknowledgment.acknowledge();
@@ -142,8 +137,6 @@ public class PolicyHandler {
         System.out.println(
             "\n\n##### listener Update : " + vacationDaysInsufficient + "\n\n"
         );
-
-        // Sample Logic //
 
         // Manual Offset Commit //
         acknowledgment.acknowledge();

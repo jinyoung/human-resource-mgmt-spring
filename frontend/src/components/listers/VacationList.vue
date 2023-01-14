@@ -107,8 +107,8 @@
             this.values = temp.data._embedded.vacations;
             
             this.newValue = {
-                'startDate': '2022-12-28',
-                'endDate': '2022-12-28',
+                'startDate': '2023-01-15',
+                'endDate': '2023-01-15',
                 'reason': '',
                 'userId': '',
                 'days': 0,

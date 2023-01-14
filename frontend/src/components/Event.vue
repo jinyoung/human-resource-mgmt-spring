@@ -47,10 +47,10 @@
                     this.value.title = '';
                 }
                 if(!('start' in this.value)) {
-                    this.value.start = '2022-12-28';
+                    this.value.start = '2023-01-15';
                 }
                 if(!('end' in this.value)) {
-                    this.value.end = '2022-12-28';
+                    this.value.end = '2023-01-15';
                 }
             }
         },

@@ -45,8 +45,8 @@
         }),
         created() {
             this.value.title = '';
-            this.value.from = '2022-12-28';
-            this.value.to = '2022-12-28';
+            this.value.from = '2023-01-15';
+            this.value.to = '2023-01-15';
         },
         watch: {
         },

@@ -21,6 +21,8 @@ import CalendarDetail from "./components/listers/CalendarDetail"
 
 import SearchCalendarView from "./components/SearchCalendarView"
 import SearchCalendarViewDetail from "./components/SearchCalendarViewDetail"
+import FindByUserIdView from "./components/FindByUserIdView"
+import FindByUserIdViewDetail from "./components/FindByUserIdViewDetail"
 import EmployeeManager from "./components/listers/EmployeeCards"
 import EmployeeDetail from "./components/listers/EmployeeDetail"
 
@@ -102,6 +104,16 @@ export default new Router({
                 path: '/searchCalendars/:id',
                 name: 'SearchCalendarViewDetail',
                 component: SearchCalendarViewDetail
+            },
+            {
+                path: '/findByUserIds',
+                name: 'FindByUserIdView',
+                component: FindByUserIdView
+            },
+            {
+                path: '/findByUserIds/:id',
+                name: 'FindByUserIdViewDetail',
+                component: FindByUserIdViewDetail
             },
             {
                 path: '/employees',

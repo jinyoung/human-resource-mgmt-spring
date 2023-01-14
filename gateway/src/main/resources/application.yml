@@ -15,7 +15,7 @@ spring:
         - id: schedule
           uri: http://localhost:8082
           predicates:
-            - Path=/calendars/**, /searchCalendars/**
+            - Path=/calendars/**, /searchCalendars/**, /findByUserIds/**
         - id: employee
           uri: http://localhost:8083
           predicates:
@@ -50,7 +50,7 @@ spring:
         - id: schedule
           uri: http://schedule:8080
           predicates:
-            - Path=/calendars/**, /searchCalendars/**
+            - Path=/calendars/**, /searchCalendars/**, /findByUserIds/**
         - id: employee
           uri: http://employee:8080
           predicates:

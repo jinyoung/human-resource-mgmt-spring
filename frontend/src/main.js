@@ -53,6 +53,7 @@ pluralCaseList.push( {plural: "vacationDaysLefts", pascal: "VacationDaysLeft"} )
 pluralCaseList.push( {plural: "calendars", pascal: "Calendar"} )
 
 pluralCaseList.push( {plural: "searchCalendars", pascal: "SearchCalendar"} )
+pluralCaseList.push( {plural: "findByUserIds", pascal: "FindByUserId"} )
 pluralCaseList.push( {plural: "employees", pascal: "Employee"} )
 
 pluralCaseList.push( {plural: "employees", pascal: "Employee"} )

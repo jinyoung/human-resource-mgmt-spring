@@ -58,7 +58,7 @@ public class PolicyHandler {
         UseCommand UseCommand = new UseCommand();
 
         vacationDaysLeftRepository
-            .findById(event.id)
+            .findById(event.Id)
             .ifPresent(aggregate -> {
                 aggregate.use(UseCommand);
             });

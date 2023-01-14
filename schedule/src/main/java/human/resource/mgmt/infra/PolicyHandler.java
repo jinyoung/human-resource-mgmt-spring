@@ -52,12 +52,12 @@ public class PolicyHandler {
             "\n\n##### listener AddCalendar : " + vacationRegistered + "\n\n"
         );
 
-        AddCalendarCommand AddCalendarCommand = new AddCalendarCommand();
+        AddCalendarCommand addCalendarCommand = new AddCalendarCommand();
 
         calendarRepository
             .findById(event.getId())
-            .ifPresent(aggregate -> {
-                aggregate.addCalendar(AddCalendarCommand);
+            .ifPresent(calendar -> {
+                calendar.addCalendar(addCalendarCommand);
             });
 
         // Manual Offset Commit //
@@ -78,12 +78,12 @@ public class PolicyHandler {
             "\n\n##### listener CancelCalendar : " + vacationCancelled + "\n\n"
         );
 
-        CancelCalendarCommand CancelCalendarCommand = new CancelCalendarCommand();
+        CancelCalendarCommand cancelCalendarCommand = new CancelCalendarCommand();
 
         calendarRepository
             .findById(event.getId())
-            .ifPresent(aggregate -> {
-                aggregate.cancelCalendar(CancelCalendarCommand);
+            .ifPresent(calendar -> {
+                calendar.cancelCalendar(cancelCalendarCommand);
             });
 
         // Manual Offset Commit //
@@ -104,12 +104,12 @@ public class PolicyHandler {
             "\n\n##### listener CancelCalendar : " + vacationRejected + "\n\n"
         );
 
-        CancelCalendarCommand CancelCalendarCommand = new CancelCalendarCommand();
+        CancelCalendarCommand cancelCalendarCommand = new CancelCalendarCommand();
 
         calendarRepository
             .findById(event.getId())
-            .ifPresent(aggregate -> {
-                aggregate.cancelCalendar(CancelCalendarCommand);
+            .ifPresent(calendar -> {
+                calendar.cancelCalendar(cancelCalendarCommand);
             });
 
         // Manual Offset Commit //
@@ -130,13 +130,8 @@ public class PolicyHandler {
             "\n\n##### listener RegisterCalendar : " + employeeJoined + "\n\n"
         );
 
-        RegisterCalendarCommand RegisterCalendarCommand = new RegisterCalendarCommand();
-
-        calendarRepository
-            .findById(event.getUserId())
-            .ifPresent(aggregate -> {
-                aggregate.registerCalendar(RegisterCalendarCommand);
-            });
+        Calendar calendar = new Calendar();
+        calendarRepository.save(calendar);
 
         // Manual Offset Commit //
         acknowledgment.acknowledge();

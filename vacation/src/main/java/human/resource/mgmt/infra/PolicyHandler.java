@@ -55,12 +55,12 @@ public class PolicyHandler {
             "\n\n##### listener Use : " + vacationRegistered + "\n\n"
         );
 
-        UseCommand UseCommand = new UseCommand();
+        UseCommand useCommand = new UseCommand();
 
         vacationDaysLeftRepository
             .findById(event.getId())
-            .ifPresent(aggregate -> {
-                aggregate.use(UseCommand);
+            .ifPresent(vacationDaysLeft -> {
+                vacationDaysLeft.use(useCommand);
             });
 
         // Manual Offset Commit //

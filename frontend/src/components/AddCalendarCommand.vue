@@ -45,8 +45,8 @@
         }),
         created() {
             this.value.title = '';
-            this.value.from = '2023-01-15';
-            this.value.to = '2023-01-15';
+            this.value.from = '2023-01-17';
+            this.value.to = '2023-01-17';
         },
         watch: {
         },

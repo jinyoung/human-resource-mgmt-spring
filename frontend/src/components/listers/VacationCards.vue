@@ -68,8 +68,8 @@
             me.values = temp.data._embedded.vacations;
             
             me.newValue = {
-                'startDate': '2023-01-15',
-                'endDate': '2023-01-15',
+                'startDate': '2023-01-17',
+                'endDate': '2023-01-17',
                 'reason': '',
                 'userId': '',
                 'days': 0,
